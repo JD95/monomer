@@ -345,7 +345,8 @@ mainLoop window fontManager config loopArgs = do
   when shouldQuit $
     void $ handleWidgetDispose newWenv newRoot
 
-  unless shouldQuit (mainLoop window fontManager config newLoopArgs)
+  unless shouldQuit (SDL.pumpEvents *> mainLoop window fontManager config newLoopArgs)
+
 
 startRenderThread
   :: (Eq s, WidgetEvent e)
